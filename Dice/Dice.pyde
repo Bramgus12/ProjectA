@@ -33,14 +33,14 @@ def draw():
     if ((mouseX < 260) and (mouseX > 60) and (mouseY < 140) and (mouseY > 60) and (mouseButton == LEFT)): # The working of the button
         number = randint(1,6)
         if (number == 1):
-            image(dice1,300,300,25,25)
+            image(dice1,270,60,80,80)
         elif (number == 2):
-            image(dice2,300,300,25,25)
+            image(dice2,270,60,80,80)
         elif (number == 3):
-            image(dice3,300,300,25,25)
+            image(dice3,270,60,80,80)
         elif (number == 4):
-            image(dice4,300,300,25,25)
+            image(dice4,270,60,80,80)
         elif (number == 5):
-            image(dice5,300,300,25,25)
+            image(dice5,270,60,80,80)
         elif (number == 6):
-            image(dice6,300,300,25,25)
+            image(dice6,270,60,80,80)
