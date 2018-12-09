@@ -1,35 +1,36 @@
 from random import randint
 
 def setup():
-    size(800,800)
-    background(100,100,100)
-    global dice1, dice2, dice3, dice4, dice5, dice6, f
-    dice1 = loadImage("1.jpg")
+    size(800,800) #size of the screen
+    background(100,100,100) #choosing a background color
+    global dice1, dice2, dice3, dice4, dice5, dice6, f #making these variables global
+    dice1 = loadImage("1.jpg") #loading images in the program so that they can be used later
     dice2 = loadImage("2.jpg")
     dice3 = loadImage("3.jpg")
     dice4 = loadImage("4.jpg")
     dice5 = loadImage("5.jpg")
     dice6 = loadImage("6.jpg")
-    f = createFont("Arial", 16, True)
-    noLoop()
-def mouseClicked():
+    f = createFont("Arial", 16, True) # f will represent size 16 Arial, Anti-aliasing is on
+    noLoop() #turning off the draw loop
+def mouseClicked(): #the button for the dice
     x = 0
     x += 1
     redraw()
     
-def Text(a,b,c):
+def Text(a,b,*c): #getting text in the screen. a= the text to put in. b= fontsize c= text color
     textFont(f, b)
-    fill(c)
+    fill(*c)
     text(a, 70, 130)
+
 def Rect(a,b,c,d,*e):
     fill(*e)
     rect(a,b,c,d)
 
 def draw():
-    global dice1, dice2, dice3, dice4, dice5, dice6, f
-    Rect(60,60,200,80,0)
-    Text("Draw!", 48, 150)
-    if ((mouseX < 260) and (mouseX > 60) and (mouseY < 140) and (mouseY > 60) and (mouseButton == LEFT)):
+    global dice1, dice2, dice3, dice4, dice5, dice6, f #Getting all the variables
+    Rect(60,60,200,80,0) #drawing a rectangle for the button
+    Text("Draw!", 48,150,150,100) #Putting text in the button
+    if ((mouseX < 260) and (mouseX > 60) and (mouseY < 140) and (mouseY > 60) and (mouseButton == LEFT)): #The working of the button
         number = randint(1,6)
         if (number == 1):
             image(dice1,300,300)
