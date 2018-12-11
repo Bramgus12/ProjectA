@@ -1,5 +1,5 @@
 def setup():
-    # Grootte van de venster en achtergrondkleur:
+    # Grootte van de venster en achtergrondkleur
     size(1600,900)
     background(255)
     
