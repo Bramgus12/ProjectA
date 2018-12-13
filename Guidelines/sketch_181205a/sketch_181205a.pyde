@@ -15,12 +15,13 @@ def button(x, y, w, h, name):
     # Rectangle and it's appearance:
     noStroke()
     fill(255)
-    rect(x, y, w, h)
+    rect(x, y, w, h, 10)
     
     # Text on button and its colour, size and position:
     fill(0)
     textSize(18)
     textAlign(CENTER, CENTER)
+    textFont(loadFont('BentonSans-17.vlw'))
     text(name, x, y, w, h)
 
 def powerupScreen():
@@ -34,6 +35,7 @@ def powerupScreen():
     # Top text and its colour and position:
     fill(0)
     textSize(55)
+    textFont(loadFont('BentonSans-55.vlw'))
     textAlign(CENTER, CENTER)
     text('Power-ups', 50, 10, 500, 70)
     
@@ -59,27 +61,30 @@ def powerup(power, picture, name):
     background(220)
     
     # Back button:
-    fill(255)
-    rect(500, 20, 50, 50)
-    image(loadImage('return.png'), 500, 20, 51, 51)
+    # fill(255)
+    # rect(500, 20, 50, 50)
+    image(loadImage('back.png'), 500, 20, 51, 51)
    
     # Top text, character's/enemy's name:
     fill(0)
     textSize(55)
     textAlign(CENTER, CENTER)
+    textFont(loadFont('BentonSans-55.vlw'))
     text(name, 35, 10, 485, 70)
     
     # Powerup text:
-    textSize(15)
+    textSize(18)
     textAlign(LEFT)
+    textFont(loadFont('BentonSans-17.vlw'))
     text(power, 20, 100, 350, 300)
     
      # Picture of character/enemy:
     image(loadImage(picture), 420, 90, 150, 230)
     
 def setup():
-    # Screen width, height and powerup screen:
+    # Screen width, height, font of all the text and powerup screen:
     size(600, 400)
+    textFont(loadFont('BentonSans-17.vlw'))
     powerupScreen()
     
 def draw():
