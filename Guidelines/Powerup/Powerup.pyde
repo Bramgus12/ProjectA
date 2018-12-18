@@ -88,33 +88,38 @@ def setup():
     powerupScreen()
     
 def draw():
-    # This is what happens when you click on a name:
-    if screen1:
-        if 30 < mouseX < 180 and 90 < mouseY < 140 and mousePressed:
-            powerup(Spiderman['power'], Spiderman['picture'], Spiderman['name'])
-        elif 30 < mouseX < 180 and 160 < mouseY < 210 and mousePressed:
-            powerup(Hulk['power'], Hulk['picture'], Hulk['name'])
-        elif 30 < mouseX < 180 and 230 < mouseY < 280 and mousePressed:
-            powerup(BlackPanther['power'], BlackPanther['picture'], BlackPanther['name'])
-        elif 30 < mouseX < 180 and 300 < mouseY < 350 and mousePressed:
-            powerup(DrStrange['power'], DrStrange['picture'], DrStrange['name'])
-        elif 210 < mouseX < 360 and 90 < mouseY < 140 and mousePressed:
-            powerup(Thor['power'], Thor['picture'], Thor['name'])
-        elif 210 < mouseX < 360 and 160 < mouseY < 210 and mousePressed:
-            powerup(IronMan['power'], IronMan['picture'], IronMan['name'])
-        elif 210 < mouseX < 360 and 230 < mouseY < 280 and mousePressed:
-            powerup(CptnAmerica['power'], CptnAmerica['picture'], CptnAmerica['name'])
-        elif 420 < mouseX < 570 and 90 < mouseY < 140 and mousePressed:
-            powerup(Venom['power'], Venom['picture'], Venom['name'])
-        elif 420 < mouseX < 570 and 160 < mouseY < 210 and mousePressed:
-            powerup(Loki['power'], Loki['picture'], Loki['name'])
-        elif 420 < mouseX < 570 and 230 < mouseY < 280 and mousePressed:
-            powerup(Ultron['power'], Ultron['picture'], Ultron['name'])
-        elif 420 < mouseX < 570 and 300 < mouseY < 350 and mousePressed:
-            powerup(Thanos['power'], Thanos['picture'], Thanos['name'])
+    mousePressed()
+   
+def mousePressed():
+    if mouseButton == LEFT:
+            # This is what happens when you click on a name:
+            if screen1:
+                if 30 < mouseX < 180 and 90 < mouseY < 140:
+                    powerup(Spiderman['power'], Spiderman['picture'], Spiderman['name'])
+                elif 30 < mouseX < 180 and 160 < mouseY < 210:
+                    powerup(Hulk['power'], Hulk['picture'], Hulk['name'])
+                elif 30 < mouseX < 180 and 230 < mouseY < 280:
+                    powerup(BlackPanther['power'], BlackPanther['picture'], BlackPanther['name'])
+                elif 30 < mouseX < 180 and 300 < mouseY < 350:
+                    powerup(DrStrange['power'], DrStrange['picture'], DrStrange['name'])
+                elif 210 < mouseX < 360 and 90 < mouseY < 140:
+                    powerup(Thor['power'], Thor['picture'], Thor['name'])
+                elif 210 < mouseX < 360 and 160 < mouseY < 210:
+                    powerup(IronMan['power'], IronMan['picture'], IronMan['name'])
+                elif 210 < mouseX < 360 and 230 < mouseY < 280:
+                    powerup(CptnAmerica['power'], CptnAmerica['picture'], CptnAmerica['name'])
+                elif 420 < mouseX < 570 and 90 < mouseY < 140:
+                    powerup(Venom['power'], Venom['picture'], Venom['name'])
+                elif 420 < mouseX < 570 and 160 < mouseY < 210:
+                    powerup(Loki['power'], Loki['picture'], Loki['name'])
+                elif 420 < mouseX < 570 and 230 < mouseY < 280:
+                    powerup(Ultron['power'], Ultron['picture'], Ultron['name'])
+                elif 420 < mouseX < 570 and 300 < mouseY < 350:
+                    powerup(Thanos['power'], Thanos['picture'], Thanos['name'])
+            
+            # This is what happens when you click on the back button:
+            elif screen2:
+                if 500 < mouseX < 550 and 20 < mouseY < 70:
+                    powerupScreen()
     
-    # This is what happens when you click on the back button:
-    elif screen2:
-        if 500 < mouseX < 550 and 20 < mouseY < 70 and mousePressed:
-            powerupScreen()
     
