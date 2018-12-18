@@ -12,7 +12,7 @@ Ultron = {'name' : 'Ultron', 'picture' : 'Ultron.jpg', 'power' : 'You will take 
 Thanos = {'name': 'Thanos', 'picture' : 'Thanos.jpg', 'power' : "Thanos gets spinned when a player enters his area. After the first player enters Thanos' area, Thanos spins every 3 rounds. He will point at three spots. When you land on one of the 3 spots Thanos is pointing at, you must go back to your checkpoint. You cannot get out of Thanos' area. If someone tries to get you out of Thanos' area, the furthest place back where you can go is the checkpoint in Thanos' area."}
 
 def button(x, y, w, h, name):
-    # Rectangle and it's appearance:
+    # Rectangle and its appearance:
     noStroke()
     fill(255)
     rect(x, y, w, h, 10)
@@ -121,5 +121,4 @@ def mousePressed():
             elif screen2:
                 if 500 < mouseX < 550 and 20 < mouseY < 70:
                     powerupScreen()
-    
     

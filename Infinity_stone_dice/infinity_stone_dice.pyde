@@ -1,10 +1,10 @@
 from random import randint
 
 def setup():
+    global f
     size(800,800) #size of the screen
     background(255) #choosing a background color
     f = createFont("Arial",12 , True) # f will represent size 12 Arial, Anti-aliasing is on
-    global f#making these variables global
     noLoop()# turning off the draw loop
     
 def mouseClicked(): #the button for the dice
@@ -20,13 +20,10 @@ def Rect(a,b,c,d,*e): #rectangle maker a= X coordinate b= Y-coordinate c= Width 
     rect(a,b,c,d)
 
 def draw():
-    global img #etting all the varaibles
     # The button of the dice:
     Rect(60,60,200,80,0) # drawing a rectangle for the button
     TextAdd("CLICK", 48, 70, 120, 255) # Putting text in the button
     
-    if ((mouseX < 260) and (mouseX > 60) and (mouseY < 140) and (mouseY > 60) and (mouseButton == LEFT)): # The working of the button
-        number = randint(1,6)
-        img = loadImage (str(number) + ".jpg")
-        image(img,360,320)
+    if 60 < mouseX < 260 and 60 < mouseY < 140 and mouseButton == LEFT: # The working of the button
+        image(loadImage(str(randint(1,6)) + ".jpg"),360,320)
     
