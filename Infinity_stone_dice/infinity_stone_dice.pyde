@@ -1,13 +1,13 @@
+from random import randint
 
 def setup():
     size(800,800) #size of the screen
     background(255) #choosing a background color
+    f = createFont("Arial",12 , True) # f will represent size 12 Arial, Anti-aliasing is on
     global f#making these variables global
     noLoop()# turning off the draw loop
     
 def mouseClicked(): #the button for the dice
-    x = 0
-    x += 1
     redraw()    
 
 def TextAdd(a,b,c,d,*e): #getting text in the screen. a= the text to put in. b= fintsize
@@ -23,10 +23,10 @@ def draw():
     global img #etting all the varaibles
     # The button of the dice:
     Rect(60,60,200,80,0) # drawing a rectangle for the button
-    TextAdd("BITCH", 48, 70, 120, 255) # Putting text in the button
+    TextAdd("CLICK", 48, 70, 120, 255) # Putting text in the button
     
-    background(220, 220, 220)
-    fill (225, 0, 0)
-    img = loadImage ("Infinity Stone Mind.jpg")
-    image(img,0,0)
+    if ((mouseX < 260) and (mouseX > 60) and (mouseY < 140) and (mouseY > 60) and (mouseButton == LEFT)): # The working of the button
+        number = randint(1,6)
+        img = loadImage (str(number) + ".jpg")
+        image(img,360,320)
     
