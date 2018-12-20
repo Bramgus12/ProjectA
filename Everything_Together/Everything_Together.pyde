@@ -9,6 +9,9 @@ def Rect(a,b,c,d,*e): #rectangle maker a= X coordinate b= Y-coordinate c= width 
     fill(*e)
     rect(a,b,c,d)
 
+def guideLines():
+    
+
 def powerupDice():
     global screen1, screen2, screen3, screen4, screen5, PlayerButtonColors, Player1, Player2, Player3, Player4
     screen1 = False
@@ -23,41 +26,43 @@ def powerupDice():
     Player4 = "Test4"
     
     background(255)
-    
+    textAlign(CENTER,CENTER)
     textSize(35)
     # The button of the dice:
     Rect(10,10,150,60,255) # drawing a rectangle for the button
     fill(0)
-    text("Roll dice!", 20, 60) # Putting text in the button
+    text("Roll dice!", 10, 10, 150,60) # Putting text in the button
     
     Rect(10,80,150,60,255) # drawing a rectangle for the button
     fill(0)
-    text("Roll stone!", 20, 130) # Putting text in the button
+    text("Roll stone!", 10,80,150,60) # Putting text in the button
     
-  
+    Rect(10,150,150,60,255) # drawing a rectangle for the button
+    fill(0)
+    text("Guidelines", 10,150,150,60) # Putting text in the button  
 
     # The button for player 1
     Rect(440, 10, 150, 60, 255)
     fill(0)
-    text(Player1, 450, 60)
+    text(Player1, 440, 10, 150, 60)
 
        
     # The button for player 2
     Rect(440, 80, 150, 60, 255)
     fill(0)
-    text(Player2, 450, 130)
+    text(Player2, 440, 80, 150, 60)
 
 
     # The button for player 3
     Rect(440, 150, 150, 60, 255)
     fill(0)
-    text(Player3, 450, 200)  
+    text(Player3, 440, 150, 150, 60)  
 
            
     # The button for player 4
     Rect(440, 220, 150, 60, 255)
     fill(0)
-    text(Player4, 450, 270)   
+    text(Player4, 440, 220, 150, 60)   
 
 def characterKiezer():
     global screen1, screen2, screen3, screen4, screen5, choices, playerchoices
@@ -158,39 +163,42 @@ def draw():
             
 
         if screen3:
-            if ((mouseX < 590) and (mouseX > 440) and (mouseY < 70) and (mouseY > 10) and (mouseButton == LEFT)):
+            if ((mouseX < 590) and (mouseX > 440) and (mouseY < 70) and (mouseY > 10)):
                 Rect(440, 10, 150, 60, 100)
                 fill(0)
-                text(Player1, 450, 60)
+                text(Player1, 440, 10, 150, 60)
             # Button player2
-            elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 140) and (mouseY > 80) and (mouseButton == LEFT)):
+            elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 140) and (mouseY > 80)):
                 Rect(440, 80, 150, 60, 100)
                 fill(0)
-                text(Player2, 450, 130)
+                text(Player2, 440, 80, 150, 60)
 
             # Button player3
-            elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 210) and (mouseY > 150) and (mouseButton == LEFT)):
+            elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 210) and (mouseY > 150)):
                 Rect(440, 150, 150, 60, 100)
                 fill(0)
-                text(Player3, 450, 200)  
+                text(Player3, 440, 150, 150, 60)  
 
       
             # Button player4
-            elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 280) and (mouseY > 220) and (mouseButton == LEFT)):
+            elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 280) and (mouseY > 220)):
                 Rect(440, 220, 150, 60, 100)
                 fill(0)
-                text(Player4, 450, 270)  
+                text(Player4, 440, 220, 150, 60)  
 
 
-            elif ((mouseX < 160) and (mouseX > 10) and (mouseY < 70) and (mouseY > 10) and (mouseButton == LEFT)):
+            elif ((mouseX < 160) and (mouseX > 10) and (mouseY < 70) and (mouseY > 10)):
                 number = randint(1,6) # generating a random Integer
                 dice = loadImage(str(number) + "d.png") #loading the image in
                 image(dice,170,10,60,60) # drawing the image   
                 
-            elif ((mouseX < 160) and (mouseX > 10) and (mouseY < 140) and (mouseY > 80) and (mouseButton == LEFT)):
+            elif ((mouseX < 160) and (mouseX > 10) and (mouseY < 140) and (mouseY > 80)):
                 number2 = randint(1,6) # generating a random Integer
                 diceInf = loadImage(str(number2) + ".jpg") #loading the image in
-                image(diceInf,170,80,36,60) # drawing the image  
+                image(diceInf,170,80,36,60) # drawing the image 
+           
+            elif ((mouseX < 160) and (mouseX > 10) and (mouseY < 210) and (mouseY > 150)):
+                guideLines() 
         if screen4:
             if 30 < mouseX < 180 and 90 < mouseY < 140:
                 powerup(Spiderman['power'], Spiderman['picture'], Spiderman['name'])
