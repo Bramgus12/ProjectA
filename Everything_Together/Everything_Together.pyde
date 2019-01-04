@@ -1,5 +1,10 @@
 from random import randint
 
+
+
+
+playerchoices = []
+
 def setup():
     size(600, 400)
     startScreen()
@@ -9,21 +14,22 @@ def Rect(a,b,c,d,*e): #rectangle maker a= X coordinate b= Y-coordinate c= width 
     fill(*e)
     rect(a,b,c,d)
 
-def guideLines():
+# def guideLines():
     
 
 def powerupDice():
-    global screen1, screen2, screen3, screen4, screen5, PlayerButtonColors, Player1, Player2, Player3, Player4
+    global screen1, screen2, screen3, screen4, screen5, PlayerButtonColors, Player1, Player2, Player3, Player4, playerchoices
     screen1 = False
     screen2 = False
     screen3 = True
     screen4 = False
     screen5 = False
-    
-    Player1 = "Test1"
-    Player2 = "Test2"
-    Player3 = "Test3"
-    Player4 = "Test4"
+    # for i in range(len(playerchoices)):
+    #     text(playerchoices[i]['name'],50,20*i+20)  # write names at x=50, and y dependent on list index
+    Player1 = playerchoices[0]['name']
+    Player2 = playerchoices[1]['name']
+    Player3 = playerchoices[2]['name']
+    Player4 = playerchoices[3]['name']
     
     background(255)
     textAlign(CENTER,CENTER)
@@ -73,7 +79,7 @@ def characterKiezer():
     Thor = {'name' : 'Thor','rectangle' : [210, 90, 150, 50]}
     IronMan = {'name' :'Iron Man','rectangle' : [210, 160, 150, 50]}
     CptnAmerica = {'name' :'Captain America','rectangle' : [210, 230, 150, 50]}
- 
+
     choices =[Spiderman, Hulk, BlackPanther, DrStrange, Thor, IronMan, CptnAmerica]
  
     playerchoices = []
@@ -103,17 +109,16 @@ def characterKiezer():
     rect(210, 230, 150, 50)
     rect(420,90,150,250)
 
-    fill(0)
-    textSize(18)
-    textAlign(CENTER, CENTER)
-    text(Spiderman['name'], Spiderman ['rectangle'][0], Spiderman ['rectangle'][1], Spiderman ['rectangle'][2], Spiderman ['rectangle'][3],)
-    text(Hulk['name'], Hulk ['rectangle'][0], Hulk ['rectangle'][1], Hulk ['rectangle'][2], Hulk ['rectangle'][3],)
-    text(BlackPanther['name'], BlackPanther ['rectangle'][0], BlackPanther ['rectangle'][1], BlackPanther ['rectangle'][2], BlackPanther ['rectangle'][3],)
-    text(DrStrange['name'], DrStrange ['rectangle'][0], DrStrange ['rectangle'][1], DrStrange ['rectangle'][2], DrStrange ['rectangle'][3],)
-    text(Thor['name'], Thor ['rectangle'][0], Thor ['rectangle'][1], Thor ['rectangle'][2], Thor ['rectangle'][3],)
-    text(IronMan['name'], IronMan ['rectangle'][0], IronMan ['rectangle'][1], IronMan ['rectangle'][2], IronMan ['rectangle'][3],)
-    text(CptnAmerica['name'], CptnAmerica ['rectangle'][0], CptnAmerica ['rectangle'][1], CptnAmerica ['rectangle'][2], CptnAmerica ['rectangle'][3],)    
-    text("Next", 210, 300, 150, 50)
+
+    global choices, playerchoices
+    # draw all options
+    for i in range(len(choices)): 
+        fill(0)       
+        text(choices[i]['name'],30,70*i+120) # write names at x=50, and y dependent on list index
+    # draw chosen
+    for i in range(len(playerchoices)):
+        text(playerchoices[i]['name'],410,20*i+100)  # write names at x=400, and y dependent on list index
+
     
 def startScreen():
     global screen1, screen2, screen3, screen4, screen5
@@ -154,12 +159,17 @@ def draw():
             elif len(playerchoices) < 4:
                 for charachter in choices:
                     if mouseX >= charachter['rectangle'][0] and mouseX <= charachter['rectangle'][2] + charachter['rectangle'][0]  and mouseY >= charachter['rectangle'][1] and mouseY <= charachter['rectangle'][3] + charachter['rectangle'][1] :
-                        (playerchoices.append(charachter))
+                        (playerchoices.append(charachter)) # add character to selectedlist
+                        fill(100)  
+                        rect(charachter['rectangle'][0], charachter['rectangle'][1], charachter['rectangle'][2], charachter['rectangle'][3])
+
                 for i in range(len(playerchoices)):
                     fill(135)
                     rect(420,90+(50 * i),150,50)
                     fill(190)
                     text(playerchoices[i]['name'] ,420,90+(50 * i),150,50)
+                    if len(playerchoices) == 4: # if 4 characters chosen, move to next gamestate / screen
+                        powerupDice()
             
 
         if screen3:
