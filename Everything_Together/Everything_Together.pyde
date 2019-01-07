@@ -38,64 +38,6 @@ def button(x, y, w, h, name):
     textFont(loadFont('BentonSans-17.vlw'))
     text(name, x, y, w, h)
 
-def guideLines():
-    global screen1, screen2, screen3, screen4, screen5, PlayerButtonColors, Player1, Player2, Player3, Player4, playerchoices
-    screen1 = False
-    screen2 = False
-    screen3 = False
-    screen4 = True
-    screen5 = False
-    
-    # Background colour:
-    background(220)
-    
-    # Top text and its colour and position:
-    fill(0)
-    textSize(55)
-    textFont(loadFont('BentonSans-55.vlw'))
-    textAlign(CENTER, CENTER)
-    text('Power-ups', 50, 10, 500, 70)
-    
-    # These are the buttons on the 'first screen'
-    button(30, 90, 150, 50, Spiderman1['name'])
-    button(30, 160, 150, 50, Hulk1['name'])
-    button(30, 230, 150, 50, BlackPanther1['name'])
-    button(30, 300, 150, 50, DrStrange1['name'])
-    button(210, 90, 150, 50, Thor1['name'])    
-    button(210, 160, 150, 50, IronMan1['name'])
-    button(210, 230, 150, 50, CptnAmerica1['name']) 
-    button(420, 90, 150, 50, Venom1['name'])
-    button(420, 160, 150, 50, Loki1['name'])
-    button(420, 230, 150, 50, Ultron1['name'])
-    button(420, 300, 150, 50, Thanos1['name'])    
-def powerup(power, picture, name):
-    global screen1, screen2
-    screen1 = False
-    screen2 = True
-    
-    # Background colour:
-    background(220)
-    
-    # Back button:
-    # fill(255)
-    # rect(500, 20, 50, 50)
-    image(loadImage('back.png'), 500, 20, 51, 51)
-   
-    # Top text, character's/enemy's name:
-    fill(0)
-    textSize(55)
-    textAlign(CENTER, CENTER)
-    textFont(loadFont('BentonSans-55.vlw'))
-    text(name, 35, 10, 485, 70)
-    
-    # Powerup text:
-    textSize(18)
-    textAlign(LEFT)
-    textFont(loadFont('BentonSans-17.vlw'))
-    text(power, 20, 100, 350, 300)
-    
-     # Picture of character/enemy:
-    image(loadImage(picture), 420, 90, 150, 230)
 def powerupDice():
     global screen1, screen2, screen3, screen4, screen5, PlayerButtonColors, Player1, Player2, Player3, Player4, playerchoices
     screen1 = False
@@ -105,10 +47,7 @@ def powerupDice():
     screen5 = False
     # for i in range(len(playerchoices)):
     #     text(playerchoices[i]['name'],50,20*i+20)  # write names at x=50, and y dependent on list index
-    Player1 = playerchoices[0]['name']
-    Player2 = playerchoices[1]['name']
-    Player3 = playerchoices[2]['name']
-    Player4 = playerchoices[3]['name']
+
     
     background(255)
     textAlign(CENTER,CENTER)
@@ -129,25 +68,28 @@ def powerupDice():
     # The button for player 1
     Rect(440, 10, 150, 60, 255)
     fill(0)
-    text(Player1, 440, 10, 150, 60)
+    text(playerchoices[0]['name'], 440, 10, 150, 60)
 
        
     # The button for player 2
     Rect(440, 80, 150, 60, 255)
     fill(0)
-    text(Player2, 440, 80, 150, 60)
+    text(playerchoices[1]['name'], 440, 80, 150, 60)
 
 
     # The button for player 3
-    Rect(440, 150, 150, 60, 255)
-    fill(0)
-    text(Player3, 440, 150, 150, 60)  
+    if len(playerchoices) >= 3:
+        
+        Rect(440, 150, 150, 60, 255)
+        fill(0)
+        text(playerchoices[2]['name'], 440, 150, 150, 60)  
 
            
     # The button for player 4
-    Rect(440, 220, 150, 60, 255)
-    fill(0)
-    text(Player4, 440, 220, 150, 60)   
+    if len(playerchoices) >= 4:
+        Rect(440, 220, 150, 60, 255)
+        fill(0)
+        text(playerchoices[3]['name'], 440, 220, 150, 60)   
 
 def characterKiezer():
     global screen1, screen2, screen3, screen4, screen5, choices, playerchoices
@@ -255,25 +197,27 @@ def draw():
             if ((mouseX < 590) and (mouseX > 440) and (mouseY < 70) and (mouseY > 10)):
                 Rect(440, 10, 150, 60, 100)
                 fill(0)
-                text(Player1, 440, 10, 150, 60)
+                text(playerchoices[0]['name'], 440, 10, 150, 60)
             # Button player2
             elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 140) and (mouseY > 80)):
                 Rect(440, 80, 150, 60, 100)
                 fill(0)
-                text(Player2, 440, 80, 150, 60)
+                text(playerchoices[1]['name'], 440, 80, 150, 60)
 
             # Button player3
             elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 210) and (mouseY > 150)):
-                Rect(440, 150, 150, 60, 100)
-                fill(0)
-                text(Player3, 440, 150, 150, 60)  
+                if len(playerchoices) >= 3:
+                    Rect(440, 150, 150, 60, 100)
+                    fill(0)
+                    text(playerchoices[2]['name'], 440, 150, 150, 60)  
 
       
             # Button player4
             elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 280) and (mouseY > 220)):
-                Rect(440, 220, 150, 60, 100)
-                fill(0)
-                text(Player4, 440, 220, 150, 60)  
+                if len(playerchoices) >= 4:
+                    Rect(440, 220, 150, 60, 100)
+                    fill(0)
+                    text(playerchoices[3]['name'], 440, 220, 150, 60)  
 
 
             elif ((mouseX < 160) and (mouseX > 10) and (mouseY < 70) and (mouseY > 10)):
@@ -285,33 +229,7 @@ def draw():
                 number2 = randint(1,6) # generating a random Integer
                 diceInf = loadImage(str(number2) + ".jpg") #loading the image in
                 image(diceInf,170,80,36,60) # drawing the image 
-           
-            elif ((mouseX < 160) and (mouseX > 10) and (mouseY < 210) and (mouseY > 150)):
-                guideLines() 
-        if screen4:
-            if 30 < mouseX < 180 and 90 < mouseY < 140:
-                powerup(Spiderman1['power'], Spiderman1['picture'], Spiderman1['name'])
-            elif 30 < mouseX < 180 and 160 < mouseY < 210:
-                powerup(Hulk1['power'], Hulk1['picture'], Hulk1['name'])
-            elif 30 < mouseX < 180 and 230 < mouseY < 280:
-                powerup(BlackPanther1['power'], BlackPanther1['picture'], BlackPanther1['name'])
-            elif 30 < mouseX < 180 and 300 < mouseY < 350:
-                powerup(DrStrange1['power'], DrStrange1['picture'], DrStrange1['name'])
-            elif 210 < mouseX < 360 and 90 < mouseY < 140:
-                powerup(Thor1['power'], Thor1['picture'], Thor1['name'])
-            elif 210 < mouseX < 360 and 160 < mouseY < 210:
-                powerup(IronMan1['power'], IronMan1['picture'], IronMan1['name'])
-            elif 210 < mouseX < 360 and 230 < mouseY < 280:
-                powerup(CptnAmerica1['power'], CptnAmerica1['picture'], CptnAmerica1['name'])
-            elif 420 < mouseX < 570 and 90 < mouseY < 140:
-                powerup(Venom1['power'], Venom1['picture'], Venom1['name'])
-            elif 420 < mouseX < 570 and 160 < mouseY < 210:
-                powerup(Loki1['power'], Loki1['picture'], Loki1['name'])
-            elif 420 < mouseX < 570 and 230 < mouseY < 280:
-                powerup(Ultron1['power'], Ultron1['picture'], Ultron1['name'])
-            elif 420 < mouseX < 570 and 300 < mouseY < 350:
-                powerup(Thanos1['power'], Thanos1['picture'], Thanos1['name'])
-                
+
                 
                 
                 
