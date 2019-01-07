@@ -133,13 +133,15 @@ def characterKiezer():
 
     global choices, playerchoices
     # draw all options
-    for i in range(len(choices)): 
+    for i in range(len(choices[0:4])): 
         fill(0)       
         text(choices[i]['name'],30,70*i+120) # write names at x=50, and y dependent on list index
+    for i in range(len(choices[4:7])): 
+        fill(0)       
+        text(choices[i+4]['name'],250,70*i+120) # write names at x=50, and y dependent on list index
     # draw chosen
     for i in range(len(playerchoices)):
         text(playerchoices[i]['name'],410,20*i+100)  # write names at x=400, and y dependent on list index
-
     
 def startScreen():
     global screen1, screen2, screen3, screen4, screen5
