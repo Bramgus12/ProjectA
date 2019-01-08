@@ -87,24 +87,24 @@ def characterKiezer():
     rect(210, 230, 150, 50)
     rect(420,90,150,250)
 
-    fill(0)
-    textSize(18)
-    textAlign(CENTER, CENTER)
-    text(Spiderman['name'], Spiderman ['rectangle'][0], Spiderman ['rectangle'][1], Spiderman ['rectangle'][2], Spiderman ['rectangle'][3],)
-    text(Hulk['name'], Hulk ['rectangle'][0], Hulk ['rectangle'][1], Hulk ['rectangle'][2], Hulk ['rectangle'][3],)
-    text(BlackPanther['name'], BlackPanther ['rectangle'][0], BlackPanther ['rectangle'][1], BlackPanther ['rectangle'][2], BlackPanther ['rectangle'][3],)
-    text(DrStrange['name'], DrStrange ['rectangle'][0], DrStrange ['rectangle'][1], DrStrange ['rectangle'][2], DrStrange ['rectangle'][3],)
-    text(Thor['name'], Thor ['rectangle'][0], Thor ['rectangle'][1], Thor ['rectangle'][2], Thor ['rectangle'][3],)
-    text(IronMan['name'], IronMan ['rectangle'][0], IronMan ['rectangle'][1], IronMan ['rectangle'][2], IronMan ['rectangle'][3],)
-    text(CptnAmerica['name'], CptnAmerica ['rectangle'][0], CptnAmerica ['rectangle'][1], CptnAmerica ['rectangle'][2], CptnAmerica ['rectangle'][3],)    
-    text("Next", 210, 300, 150, 50)
+
     
     screen1 = False
     screen2 = True
     screen3 = False
     screen4 = False
     screen5 = False
-    
+    global choices, playerchoices
+    # draw all options
+    for i in range(len(choices[0:4])): 
+        fill(0)       
+        text(choices[i]['name'],30,70*i+120) # write names at x=50, and y dependent on list index
+    for i in range(len(choices[4:7])): 
+        fill(0)       
+        text(choices[i+4]['name'],250,70*i+120) # write names at x=50, and y dependent on list index
+    # draw chosen
+    for i in range(len(playerchoices)):
+        text(playerchoices[i]['name'],410,20*i+100)  # write names at x=400, and y dependent on list index
 def Rect(a,b,c,d,*e): #rectangle maker a= X coordinate b= Y-coordinate c= width of the rectangle d= height of the rectangle e= color of the rectangle
     fill(*e)
     rect(a,b,c,d)
@@ -116,11 +116,7 @@ def powerupDice():
     screen3 = True
     screen4 = False
     screen5 = False
-    
-    Player1 = "Test1"
-    Player2 = "Test2"
-    Player3 = "Test3"
-    Player4 = "Test4"
+
     
     background(255)
     textAlign(CENTER,CENTER)
@@ -141,26 +137,29 @@ def powerupDice():
     # The button for player 1
     Rect(440, 10, 150, 60, 255)
     fill(0)
-    text(Player1, 440, 10, 150, 60)
+    text(playerchoices[0]['name'], 440, 10, 150, 60)
 
        
     # The button for player 2
     Rect(440, 80, 150, 60, 255)
     fill(0)
-    text(Player2, 440, 80, 150, 60)
+    text(playerchoices[1]['name'], 440, 80, 150, 60)
 
 
     # The button for player 3
-    Rect(440, 150, 150, 60, 255)
-    fill(0)
-    text(Player3, 440, 150, 150, 60)  
+    if len(playerchoices) >= 3:
+        
+        Rect(440, 150, 150, 60, 255)
+        fill(0)
+        text(playerchoices[2]['name'], 440, 150, 150, 60)  
 
            
     # The button for player 4
-    Rect(440, 220, 150, 60, 255)
-    fill(0)
-    text(Player4, 440, 220, 150, 60)   
-    
+    if len(playerchoices) >= 4:
+        Rect(440, 220, 150, 60, 255)
+        fill(0)
+        text(playerchoices[3]['name'], 440, 220, 150, 60)   
+
 def button(x, y, w, h, name):
     # Rectangle and its appearance:
     noStroke()
@@ -257,41 +256,49 @@ def draw():
             print(choices)
             if ((mouseX < 360) and (mouseX > 210) and (mouseY < 350) and (mouseY > 300)):
                 powerupDice()
-                activeScreen = screen3
             elif len(playerchoices) < 4:
                 for charachter in choices:
                     if mouseX >= charachter['rectangle'][0] and mouseX <= charachter['rectangle'][2] + charachter['rectangle'][0]  and mouseY >= charachter['rectangle'][1] and mouseY <= charachter['rectangle'][3] + charachter['rectangle'][1] :
-                        (playerchoices.append(charachter))
+                        (playerchoices.append(charachter)) # add character to selectedlist
+                        fill(100)  
+                        rect(charachter['rectangle'][0], charachter['rectangle'][1], charachter['rectangle'][2], charachter['rectangle'][3])
+
                 for i in range(len(playerchoices)):
                     fill(135)
                     rect(420,90+(50 * i),150,50)
                     fill(190)
                     text(playerchoices[i]['name'] ,420,90+(50 * i),150,50)
+                    if len(playerchoices) == 4: # if 4 characters chosen, move to next gamestate / screen
+                        powerupDice()
+            
+
             
         # if ((mouseX < 590) and (mouseX > 440) and (mouseY < 70) and (mouseY > 10)) and activeScreen == screen3:
         elif screen3:
             if ((mouseX < 590) and (mouseX > 440) and (mouseY < 70) and (mouseY > 10)):
                 Rect(440, 10, 150, 60, 100)
                 fill(0)
-                text(Player1, 440, 10, 150, 60)
+                text(playerchoices[0]['name'], 440, 10, 150, 60)
             # Button player2
             elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 140) and (mouseY > 80)):
                 Rect(440, 80, 150, 60, 100)
                 fill(0)
-                text(Player2, 440, 80, 150, 60)
+                text(playerchoices[1]['name'], 440, 80, 150, 60)
 
             # Button player3
             elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 210) and (mouseY > 150)):
-                Rect(440, 150, 150, 60, 100)
-                fill(0)
-                text(Player3, 440, 150, 150, 60)  
+                if len(playerchoices) >= 3:
+                    Rect(440, 150, 150, 60, 100)
+                    fill(0)
+                    text(playerchoices[2]['name'], 440, 150, 150, 60)  
 
       
             # Button player4
             elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 280) and (mouseY > 220)):
-                Rect(440, 220, 150, 60, 100)
-                fill(0)
-                text(Player4, 440, 220, 150, 60)  
+                if len(playerchoices) >= 4:
+                    Rect(440, 220, 150, 60, 100)
+                    fill(0)
+                    text(playerchoices[3]['name'], 440, 220, 150, 60)  
 
 
             elif ((mouseX < 160) and (mouseX > 10) and (mouseY < 70) and (mouseY > 10)):
@@ -303,6 +310,7 @@ def draw():
                 number2 = randint(1,6) # generating a random Integer
                 diceInf = loadImage(str(number2) + ".jpg") #loading the image in
                 image(diceInf,170,80,36,60) # drawing the image 
+                
            
             elif ((mouseX < 160) and (mouseX > 10) and (mouseY < 210) and (mouseY > 150)):
                 powerupScreen() 
