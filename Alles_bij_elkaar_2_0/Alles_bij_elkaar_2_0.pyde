@@ -1,13 +1,13 @@
 from random import randint
 
 # Characters'/enemies' power-ups, names and pictures:
-Spiderman = {'name' : 'Spiderman', 'rectangle' : [30, 90, 150, 50], 'picture' : 'Spiderman.jpg', 'power' : "Spiderman's power-up is called Webzip. When he uses his power-up, he can move players. The players will be placed 3 steps behind Spiderman. Webzip has a range of 4 spots in front of Spiderman."}
-Hulk = {'name' : 'Hulk', 'rectangle' : [30, 160, 150, 50], 'picture' : 'Hulk.jpg', 'power' : "Hulk's power-up is called Smash. When he uses his power-up, he blows away all players within a range of 3 steps. Smash blows them 3 steps forward if the players are standing in front of him, and 3 steps backward if the players are standing behind him."}
-BlackPanther = {'name' : 'Black Panther', 'rectangle' : [30, 230, 150, 50], 'picture' : 'BlackPanther.jpg', 'power' : "Black Panther's power-up is called Kinetic Energy. When he uses his power-up, he blows away all players within a range of 3 steps. Smash blows them 3 steps forward if the players are standing in front of him, and 3 steps backward if the players are standing behind him."}
-DrStrange = {'name' : 'Doctor Strange', 'rectangle' : [30, 300, 150, 50], 'picture' : 'DoctorStrange.jpg', 'power' : "Doctor Strange's power is called Clone Illusion. When he uses his power-up, he creates a clone of himself. Every player who tries to attack Doctor Strange's clone goes back to his own checkpoint. The power-up stays activated for 3 rounds."}
-Thor = {'name' : 'Thor', 'rectangle' : [210, 90, 150, 50], 'picture' : 'Thor.jpg', 'power' : "Thor's power-up is called Hammer: Mjolnir. By swinging his hammer, Thor can move 6 steps forward."}
-IronMan = {'name' : 'Iron Man', 'rectangle' : [210, 160, 150, 50], 'picture' : 'IronMan.jpg', 'power' : "Iron Man's power-up is called Second Suit Roadblock. He can call a second suit to block one upcoming player. After that happens, the suit gets destroyed."}
-CptnAmerica = {'name' : 'Captain America', 'rectangle' : [210, 230, 150, 50], 'picture' : 'CaptainAmerica.jpg', 'power' : "Captain America's power-up is called Shield. This is a passive power-up: it makes the player immune to every hero's power-up except Webzip and Clone Illusion."}
+Spiderman = {'name' : 'Spiderman', 'powerUsed' : False, 'rectangle' : [30, 90, 150, 50], 'picture' : 'Spiderman.jpg', 'power' : "Spiderman's power-up is called Webzip. When he uses his power-up, he can move players. The players will be placed 3 steps behind Spiderman. Webzip has a range of 4 spots in front of Spiderman."}
+Hulk = {'name' : 'Hulk', 'powerUsed' : False, 'rectangle' : [30, 160, 150, 50], 'picture' : 'Hulk.jpg', 'power' : "Hulk's power-up is called Smash. When he uses his power-up, he blows away all players within a range of 3 steps. Smash blows them 3 steps forward if the players are standing in front of him, and 3 steps backward if the players are standing behind him."}
+BlackPanther = {'name' : 'Black Panther', 'powerUsed' : False, 'rectangle' : [30, 230, 150, 50], 'picture' : 'BlackPanther.jpg', 'power' : "Black Panther's power-up is called Kinetic Energy. When he uses his power-up, he blows away all players within a range of 3 steps. Smash blows them 3 steps forward if the players are standing in front of him, and 3 steps backward if the players are standing behind him."}
+DrStrange = {'name' : 'Doctor Strange', 'powerUsed' : False, 'rectangle' : [30, 300, 150, 50], 'picture' : 'DoctorStrange.jpg', 'power' : "Doctor Strange's power is called Clone Illusion. When he uses his power-up, he creates a clone of himself. Every player who tries to attack Doctor Strange's clone goes back to his own checkpoint. The power-up stays activated for 3 rounds."}
+Thor = {'name' : 'Thor', 'powerUsed' : False, 'rectangle' : [210, 90, 150, 50], 'picture' : 'Thor.jpg', 'power' : "Thor's power-up is called Hammer: Mjolnir. By swinging his hammer, Thor can move 6 steps forward."}
+IronMan = {'name' : 'Iron Man', 'powerUsed' : False, 'rectangle' : [210, 160, 150, 50], 'picture' : 'IronMan.jpg', 'power' : "Iron Man's power-up is called Second Suit Roadblock. He can call a second suit to block one upcoming player. After that happens, the suit gets destroyed."}
+CptnAmerica = {'name' : 'Captain America', 'powerUsed' : False, 'rectangle' : [210, 230, 150, 50], 'picture' : 'CaptainAmerica.jpg', 'power' : "Captain America's power-up is called Shield. This is a passive power-up: it makes the player immune to every hero's power-up except Webzip and Clone Illusion."}
 Venom = {'name' : 'Venom', 'picture' : 'Venom.png', 'power' : 'You are stuck on the B platform and are not allowed to move for 2 rounds.'}
 Loki = {'name' : 'Loki', 'picture' : 'Loki.jpg', 'power' : 'For one turn the amount you throw will set you back rather than forward. For example, if you throw 4, you will have to go 4 steps back.'}
 Ultron = {'name' : 'Ultron', 'picture' : 'Ultron.jpg', 'power' : 'You will take 1 or 2 steps less on your next throw. This depends on the B platform you land on.'}
@@ -16,19 +16,21 @@ Thanos = {'name': 'Thanos', 'picture' : 'Thanos.jpg', 'power' : "Thanos gets spi
 def setup():
     size(600, 400)
     startScreen()
-    
     noLoop()
-    activeScreen = screen3
     
 def startScreen():
     global screen1, screen2, screen3, screen4, screen5
-    # screen1 = True
-    # screen2 = False
-    # screen3 = False
-    # screen4 = False
-    # screen5 = False
-    # Grootte van de venster en achtergrondkleur
+    
+    screen1 = True
+    screen2 = False
+    screen3 = False
+    screen4 = False
+    screen5 = False
+    
+    # Achtergrondkleur
     background(255)
+    
+    noStroke()
     
     # Avengers foto:
     Avengers = loadImage('Avengers.png')
@@ -42,72 +44,62 @@ def startScreen():
     textSize(60)
     text('Click anywhere to start', 75, 350)
     
-    screen1 = True
-    screen2 = False
-    screen3 = False
-    screen4 = False
-    screen5 = False
     
 def characterKiezer():
     global screen1, screen2, screen3, screen4, screen5, choices, playerchoices
-    # Spiderman = {'name' : 'Spiderman', 'rectangle' : [30, 90, 150, 50]}
-    # Hulk = {'name' : 'Hulk','rectangle' : [30, 160, 150, 50]}
-    # BlackPanther = {'name' :'Black Panther','rectangle' : [30, 230, 150, 50]}
-    # DrStrange = {'name' : 'Doctor Strange','rectangle' : [30, 300, 150, 50]}
-    # Thor = {'name' : 'Thor','rectangle' : [210, 90, 150, 50]}
-    # IronMan = {'name' :'Iron Man','rectangle' : [210, 160, 150, 50]}
-    # CptnAmerica = {'name' :'Captain America','rectangle' : [210, 230, 150, 50]}
  
     choices =[Spiderman, Hulk, BlackPanther, DrStrange, Thor, IronMan, CptnAmerica]
  
     playerchoices = []
-    
-    # screen1 = False
-    # screen2 = True
-    # screen3 = False
-    # screen4 = False
-    # screen5 = False
-    
-    # background colour:
-    background(255)
-   
-    fill(0)
-    textSize(25)
-    text('Choose your charachter', 150, 60)
-   
-    # rectangles' colour:
-    fill(255)
-    rect(30, 90, 150, 50)
-    rect(30, 160, 150, 50)
-    rect(30, 230, 150, 50)
-    rect(30, 300, 150, 50)
-    rect(210, 300, 150, 50)
-    rect(210, 90, 150, 50)
-    rect(210, 160, 150, 50)
-    rect(210, 230, 150, 50)
-    rect(420,90,150,250)
-
-
     
     screen1 = False
     screen2 = True
     screen3 = False
     screen4 = False
     screen5 = False
+    
+    # background colour:
+    background(220)
+   
+    fill(0)
+    textFont(loadFont('BentonSans-55.vlw'))
+    textSize(45)
+    textAlign(CENTER, CENTER)
+    
+    text('Choose your charachter', 300, 40)
+   
+    # rectangles:
+    noStroke()
+    fill(255)
+    rect(30, 90, 150, 50, 10)
+    rect(30, 160, 150, 50, 10)
+    rect(30, 230, 150, 50, 10)
+    rect(30, 300, 150, 50, 10)
+    rect(210, 300, 150, 50, 10)
+    rect(210, 90, 150, 50, 10)
+    rect(210, 160, 150, 50, 10)
+    rect(210, 230, 150, 50, 10)
+    rect(420, 90, 150, 250, 10)
+
+    textSize(18)
+    textFont(loadFont('BentonSans-17.vlw'))
+    
     global choices, playerchoices
     # draw all options
     for i in range(len(choices[0:4])): 
         fill(0)       
-        text(choices[i]['name'],30,70*i+120) # write names at x=50, and y dependent on list index
+        text(choices[i]['name'],105,70*i+115) # write names at x=50, and y dependent on list index
+        # rect(30, 70,20 * i+120,10)
     for i in range(len(choices[4:7])): 
         fill(0)       
-        text(choices[i+4]['name'],250,70*i+120) # write names at x=50, and y dependent on list index
+        text(choices[i+4]['name'],285,70*i+115) # write names at x=50, and y dependent on list index
     # draw chosen
     for i in range(len(playerchoices)):
         text(playerchoices[i]['name'],410,20*i+100)  # write names at x=400, and y dependent on list index
+        
 def Rect(a,b,c,d,*e): #rectangle maker a= X coordinate b= Y-coordinate c= width of the rectangle d= height of the rectangle e= color of the rectangle
     fill(*e)
-    rect(a,b,c,d)
+    rect(a,b,c,d,10)
 
 def powerupDice():
     global screen1, screen2, screen3, screen4, screen5, PlayerButtonColors, Player1, Player2, Player3, Player4
@@ -118,9 +110,11 @@ def powerupDice():
     screen5 = False
 
     
-    background(255)
+    background(220)
     textAlign(CENTER,CENTER)
-    textSize(35)
+    # textSize(35)
+    textSize(18)
+    textFont(loadFont('BentonSans-17.vlw'))
     # The button of the dice:
     Rect(10,10,150,60,255) # drawing a rectangle for the button
     fill(0)
@@ -135,28 +129,43 @@ def powerupDice():
     text("Guidelines", 10,150,150,60) # Putting text in the button  
 
     # The button for player 1
-    Rect(440, 10, 150, 60, 255)
+    if playerchoices[0]['powerUsed']:
+        fill(110)
+    else:
+        fill(255)
+    rect(440, 10, 150, 60, 10)
     fill(0)
     text(playerchoices[0]['name'], 440, 10, 150, 60)
 
        
     # The button for player 2
-    Rect(440, 80, 150, 60, 255)
+    if playerchoices[1]['powerUsed']:
+        fill(110)
+    else:
+        fill(255)
+    rect(440, 80, 150, 60, 10)
     fill(0)
     text(playerchoices[1]['name'], 440, 80, 150, 60)
 
 
     # The button for player 3
     if len(playerchoices) >= 3:
-        
-        Rect(440, 150, 150, 60, 255)
+        if playerchoices[2]['powerUsed']:
+            fill(110)
+        else:
+            fill(255)
+        rect(440, 150, 150, 60, 10)
         fill(0)
         text(playerchoices[2]['name'], 440, 150, 150, 60)  
 
            
     # The button for player 4
     if len(playerchoices) >= 4:
-        Rect(440, 220, 150, 60, 255)
+        if playerchoices[3]['powerUsed']:
+            fill(110)
+        else:
+            fill(255)      
+        rect(440, 220, 150, 60, 10)
         fill(0)
         text(playerchoices[3]['name'], 440, 220, 150, 60)   
 
@@ -169,7 +178,7 @@ def button(x, y, w, h, name):
     # Text on button and its colour, size and position:
     fill(0)
     textSize(18)
-    textAlign(CENTER, CENTER)
+    # textAlign(CENTER, CENTER)
     textFont(loadFont('BentonSans-17.vlw'))
     text(name, x, y, w, h)
 
@@ -204,6 +213,7 @@ def powerupScreen():
     button(420, 160, 150, 50, Loki['name'])
     button(420, 230, 150, 50, Ultron['name'])
     button(420, 300, 150, 50, Thanos['name'])
+    image(loadImage('back.png'), 500, 20, 51, 51)
     
 def powerup(power, picture, name):
     global screen1, screen2, screen3, screen4, screen5
@@ -218,8 +228,6 @@ def powerup(power, picture, name):
     background(220)
     
     # Back button:
-    # fill(255)
-    # rect(500, 20, 50, 50)
     image(loadImage('back.png'), 500, 20, 51, 51)
    
     # Top text, character's/enemy's name:
@@ -242,14 +250,9 @@ def mouseClicked():
     redraw()  
     
 def draw():
-    global activeScreen, screen1, screen2, screen3, screen4, screen5
-#     mousePressed()
-   
-# def mousePressed():
     if mouseButton == LEFT:
         if screen1:
             if 0 < mouseX < 800 and 0 < mouseY < 800:
-                # characterKiezer()
                 characterKiezer()
         
         elif screen2:
@@ -272,47 +275,53 @@ def draw():
                         powerupDice()
             
 
-            
-        # if ((mouseX < 590) and (mouseX > 440) and (mouseY < 70) and (mouseY > 10)) and activeScreen == screen3:
         elif screen3:
-            if ((mouseX < 590) and (mouseX > 440) and (mouseY < 70) and (mouseY > 10)):
+            if playerchoices[0]['powerUsed'] or (mouseX < 590) and (mouseX > 440) and (mouseY < 70) and (mouseY > 10):
+                # if playerchoices[0]['powerUsed']:
+                #     fill(110)
+                # else:
+                #     fill(255)
                 Rect(440, 10, 150, 60, 100)
                 fill(0)
                 text(playerchoices[0]['name'], 440, 10, 150, 60)
+                playerchoices[0]['powerUsed'] = True
             # Button player2
-            elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 140) and (mouseY > 80)):
+            if ((mouseX < 590) and (mouseX > 440) and (mouseY < 140) and (mouseY > 80)):
                 Rect(440, 80, 150, 60, 100)
                 fill(0)
                 text(playerchoices[1]['name'], 440, 80, 150, 60)
+                playerchoices[1]['powerUsed'] = True
 
             # Button player3
-            elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 210) and (mouseY > 150)):
+            if ((mouseX < 590) and (mouseX > 440) and (mouseY < 210) and (mouseY > 150)):
                 if len(playerchoices) >= 3:
                     Rect(440, 150, 150, 60, 100)
                     fill(0)
                     text(playerchoices[2]['name'], 440, 150, 150, 60)  
+                    playerchoices[2]['powerUsed'] = True
 
       
             # Button player4
-            elif ((mouseX < 590) and (mouseX > 440) and (mouseY < 280) and (mouseY > 220)):
+            if ((mouseX < 590) and (mouseX > 440) and (mouseY < 280) and (mouseY > 220)):
                 if len(playerchoices) >= 4:
                     Rect(440, 220, 150, 60, 100)
                     fill(0)
-                    text(playerchoices[3]['name'], 440, 220, 150, 60)  
+                    text(playerchoices[3]['name'], 440, 220, 150, 60) 
+                    playerchoices[3]['powerUsed'] = True 
 
 
-            elif ((mouseX < 160) and (mouseX > 10) and (mouseY < 70) and (mouseY > 10)):
+            if ((mouseX < 160) and (mouseX > 10) and (mouseY < 70) and (mouseY > 10)):
                 number = randint(1,6) # generating a random Integer
                 dice = loadImage(str(number) + "d.png") #loading the image in
                 image(dice,170,10,60,60) # drawing the image   
                 
-            elif ((mouseX < 160) and (mouseX > 10) and (mouseY < 140) and (mouseY > 80)):
+            if ((mouseX < 160) and (mouseX > 10) and (mouseY < 140) and (mouseY > 80)):
                 number2 = randint(1,6) # generating a random Integer
                 diceInf = loadImage(str(number2) + ".jpg") #loading the image in
                 image(diceInf,170,80,36,60) # drawing the image 
                 
            
-            elif ((mouseX < 160) and (mouseX > 10) and (mouseY < 210) and (mouseY > 150)):
+            if ((mouseX < 160) and (mouseX > 10) and (mouseY < 210) and (mouseY > 150)):
                 powerupScreen() 
                 
         elif screen4:
@@ -338,8 +347,10 @@ def draw():
                 powerup(Ultron['power'], Ultron['picture'], Ultron['name'])
             elif 420 < mouseX < 570 and 300 < mouseY < 350:
                 powerup(Thanos['power'], Thanos['picture'], Thanos['name'])
-        
-        # This is what happens when you click on the back button:
+            
+            elif 500 < mouseX < 550 and 20 < mouseY < 70:
+                powerupDice()
+ 
         elif screen5:
             if 500 < mouseX < 550 and 20 < mouseY < 70:
                 powerupScreen()

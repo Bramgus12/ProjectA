@@ -114,8 +114,11 @@ def characterKiezer():
     # background colour:
     background(255)
    
+    noStroke()
+    textFont(loadFont('BentonSans-17.vlw'))
+    
     fill(0)
-    textSize(25)
+    # textSize(25)
     text('Choose your charachter', 150, 60)
    
     # rectangles' colour:
