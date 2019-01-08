@@ -252,7 +252,7 @@ def draw():
                 # characterKiezer()
                 characterKiezer()
         
-        if screen2:
+        elif screen2:
             print(choices)
             if ((mouseX < 360) and (mouseX > 210) and (mouseY < 350) and (mouseY > 300)):
                 powerupDice()
@@ -272,7 +272,7 @@ def draw():
                         powerupDice()
             
 
-        if screen3:
+        elif screen3:
             if ((mouseX < 590) and (mouseX > 440) and (mouseY < 70) and (mouseY > 10)):
                 Rect(440, 10, 150, 60, 100)
                 fill(0)
@@ -312,7 +312,7 @@ def draw():
             elif ((mouseX < 160) and (mouseX > 10) and (mouseY < 210) and (mouseY > 150)):
                 powerupScreen()
 
-        if screen4:
+        elif screen4:
             if 30 < mouseX < 180 and 90 < mouseY < 140:
                 powerup(Spiderman1['power'], Spiderman1['picture'], Spiderman1['name'])
             elif 30 < mouseX < 180 and 160 < mouseY < 210:
