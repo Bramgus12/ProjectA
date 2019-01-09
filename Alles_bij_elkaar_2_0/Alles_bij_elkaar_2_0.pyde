@@ -123,7 +123,7 @@ def powerupDice():
     if playerchoices[0]['powerUsed']:
         fill(110)
     else:
-        fill(255)
+        fill(255)    
     rect(440, 10, 150, 60, 10)
     fill(0)
     text(playerchoices[0]['name'], 440, 10, 150, 60)
@@ -204,7 +204,6 @@ def powerupScreen():
     
 def powerup(power, picture, name):
     global screen1, screen2, screen3, screen4, screen5
-    
     screen1 = False
     screen2 = False
     screen3 = False
@@ -262,6 +261,7 @@ def draw():
                     #     powerupDice()    
 
         elif screen3:
+            # Button player1
             if playerchoices[0]['powerUsed'] or 440 < mouseX < 590 and 10 < mouseY < 70:
                 Rect(440, 10, 150, 60, 100)
                 fill(0)
@@ -296,7 +296,7 @@ def draw():
                 dice = loadImage(str(number) + "d.png") #loading the image in
                 image(dice,170,10,60,60) # drawing the image   
                 
-            if ((mouseX < 160) and (mouseX > 10) and (mouseY < 140) and (mouseY > 80)):
+            if 10 < mouseX < 160 and 80 < mouseY < 140:
                 number2 = randint(1,6) # generating a random Integer
                 diceInf = loadImage(str(number2) + ".jpg") #loading the image in
                 image(diceInf,170,80,36,60) # drawing the image
@@ -305,6 +305,7 @@ def draw():
                 powerupScreen() 
                 
         elif screen4:
+            # buttons van de powerup screen:
             if 30 < mouseX < 180 and 90 < mouseY < 140:
                 powerup(Spiderman['power'], Spiderman['picture'], Spiderman['name'])
             elif 30 < mouseX < 180 and 160 < mouseY < 210:
@@ -332,5 +333,6 @@ def draw():
                 powerupDice()
  
         elif screen5:
+            # back button:
             if 500 < mouseX < 550 and 20 < mouseY < 70:
                 powerupScreen()
