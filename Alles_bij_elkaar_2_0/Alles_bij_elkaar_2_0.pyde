@@ -274,7 +274,11 @@ def draw():
         elif screen2:
             print(choices)
             if 210 < mouseX < 360 and 300 < mouseY < 350:
-                powerupDice()
+                if len(playerchoices) < 2:
+                    characterKiezer()
+                else:
+                    powerupDice()
+                
                 
             elif len(playerchoices) < 4:
                 for charachter in choices:
