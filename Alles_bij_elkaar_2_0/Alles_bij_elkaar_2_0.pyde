@@ -12,6 +12,7 @@ Venom = {'name' : 'Venom', 'picture' : 'Venom.png', 'power' : 'You are stuck on 
 Loki = {'name' : 'Loki', 'picture' : 'Loki.jpg', 'power' : 'For one turn the amount you throw will set you back rather than forward. For example, if you throw 4, you will have to go 4 steps back.'}
 Ultron = {'name' : 'Ultron', 'picture' : 'Ultron.jpg', 'power' : 'You will take 1 or 2 steps less on your next throw. This depends on the B platform you land on.'}
 Thanos = {'name': 'Thanos', 'picture' : 'Thanos.jpg', 'power' : "Thanos gets spinned when a player enters his area. After the first player enters Thanos' area, Thanos spins every 3 rounds. He will point at three spots. When you land on one of the 3 spots Thanos is pointing at, you must go back to your checkpoint. You cannot get out of Thanos' area. If someone tries to get you out of Thanos' area, the furthest place back where you can go is the checkpoint in Thanos' area."}
+Stones = {'name' : 'Infinity Stones', 'power' : 'I.  The Power Stone doubles your steps. It can only be used for one round.\nII.  The Mind Stone makes you indestructible for one round. If a player tries to attack you, nothing happens to the attacking player.\nIII.  The Reality Stone enables you to choose one player who will not be allowed to move for one turn.\nIV.  The Soul Stone enables you to choose one player who will be sent back to his/her last checkpoint.\nV.  The Space Stone allows you to take the place of the player in front of you. The player in front of you goes back to his/her last checkpoint.\nVI.  The Time Stone allows you to send all other players 5 steps back.'}
 
 def setup():
     size(600, 400)
@@ -196,6 +197,7 @@ def powerupScreen():
     button(210, 90, 150, 50, Thor['name'])    
     button(210, 160, 150, 50, IronMan['name'])
     button(210, 230, 150, 50, CptnAmerica['name']) 
+    button(210, 300, 150, 50, Stones['name'])
     button(420, 90, 150, 50, Venom['name'])
     button(420, 160, 150, 50, Loki['name'])
     button(420, 230, 150, 50, Ultron['name'])
@@ -229,9 +231,36 @@ def powerup(power, picture, name):
     textFont(loadFont('BentonSans-17.vlw'))
     text(power, 20, 100, 350, 300)
     
-     # Picture of character/enemy:
+    # Picture of character/enemy:
     image(loadImage(picture), 420, 90, 150, 230)
 
+def stonePower(power, name):
+    global screen1, screen2, screen3, screen4, screen5
+    screen1 = False
+    screen2 = False
+    screen3 = False
+    screen4 = False
+    screen5 = True
+    
+    # Background colour:
+    background(220)
+    
+    # Back button:
+    image(loadImage('back.png'), 500, 20, 51, 51)
+   
+    # Top text, character's/enemy's name:
+    fill(0)
+    textSize(55)
+    textAlign(CENTER, CENTER)
+    textFont(loadFont('BentonSans-55.vlw'))
+    text(name, 35, 10, 485, 70)
+    
+    # Powerup text:
+    textSize(18)
+    textAlign(LEFT)
+    textFont(loadFont('BentonSans-17.vlw'))
+    text(power, 20, 100, 550, 300)
+    
 def mouseClicked():
     redraw()  
     
@@ -320,6 +349,8 @@ def draw():
                 powerup(IronMan['power'], IronMan['picture'], IronMan['name'])
             elif 210 < mouseX < 360 and 230 < mouseY < 280:
                 powerup(CptnAmerica['power'], CptnAmerica['picture'], CptnAmerica['name'])
+            elif 210 < mouseX < 360 and 300 < mouseY < 350:
+                stonePower(Stones['power'], Stones['name'])
             elif 420 < mouseX < 570 and 90 < mouseY < 140:
                 powerup(Venom['power'], Venom['picture'], Venom['name'])
             elif 420 < mouseX < 570 and 160 < mouseY < 210:
