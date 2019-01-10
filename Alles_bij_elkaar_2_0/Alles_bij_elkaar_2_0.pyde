@@ -78,6 +78,8 @@ def characterKiezer():
     textSize(18)
     textFont(loadFont('BentonSans-17.vlw'))
     
+    # text('Next', 210, 300, 150, 50)
+    
     global choices, playerchoices
     # draw all options
     for i in range(len(choices[0:4])): 
@@ -90,7 +92,7 @@ def characterKiezer():
     # draw chosen
     for i in range(len(playerchoices)):
         text(playerchoices[i]['name'],410,20*i+100)  # write names at x=400, and y dependent on list index
-        
+    text('Next', 210, 300, 150, 50)
 def Rect(a,b,c,d,*e): #rectangle maker a= X coordinate b= Y-coordinate c= width of the rectangle d= height of the rectangle e= color of the rectangle
     fill(*e)
     rect(a,b,c,d,10)
