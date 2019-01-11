@@ -1,13 +1,13 @@
 from random import randint
 
 # Characters'/enemies' power-ups, names and pictures:
-Spiderman = {'name' : 'Spiderman', 'powerUsed' : False, 'rectangle' : [30, 90, 150, 50,10], 'picture' : 'Spiderman.jpg', 'power' : "Spiderman's power-up is called Webzip. When he uses his power-up, he can move players. The players will be placed 3 steps behind Spiderman. Webzip has a range of 4 spots in front of Spiderman."}
-Hulk = {'name' : 'Hulk', 'powerUsed' : False, 'rectangle' : [30, 160, 150, 50,10], 'picture' : 'Hulk.jpg', 'power' : "Hulk's power-up is called Smash. When he uses his power-up, he blows away all players within a range of 3 steps. Smash blows them 3 steps forward if the players are standing in front of him, and 3 steps backward if the players are standing behind him."}
-BlackPanther = {'name' : 'Black Panther', 'powerUsed' : False, 'rectangle' : [30, 230, 150, 50,10], 'picture' : 'BlackPanther.jpg', 'power' : "Black Panther's power-up is called Kinetic Energy. When he uses his power-up, he blows away all players within a range of 3 steps. Smash blows them 3 steps forward if the players are standing in front of him, and 3 steps backward if the players are standing behind him."}
-DrStrange = {'name' : 'Doctor Strange', 'powerUsed' : False, 'rectangle' : [30, 300, 150, 50,10], 'picture' : 'DoctorStrange.jpg', 'power' : "Doctor Strange's power is called Clone Illusion. When he uses his power-up, he creates a clone of himself. Every player who tries to attack Doctor Strange's clone goes back to his own checkpoint. The power-up stays activated for 3 rounds."}
-Thor = {'name' : 'Thor', 'powerUsed' : False, 'rectangle' : [210, 90, 150, 50,10], 'picture' : 'Thor.jpg', 'power' : "Thor's power-up is called Hammer: Mjolnir. By swinging his hammer, Thor can move 6 steps forward."}
-IronMan = {'name' : 'Iron Man', 'powerUsed' : False, 'rectangle' : [210, 160, 150, 50,10], 'picture' : 'IronMan.jpg', 'power' : "Iron Man's power-up is called Second Suit Roadblock. He can call a second suit to block one upcoming player. After that happens, the suit gets destroyed."}
-CptnAmerica = {'name' : 'Captain America', 'powerUsed' : False, 'rectangle' : [210, 230, 150, 50,10], 'picture' : 'CaptainAmerica.jpg', 'power' : "Captain America's power-up is called Shield. This is a passive power-up: it makes the player immune to every hero's power-up except Webzip and Clone Illusion."}
+Spiderman = {'name' : 'Spiderman', 'notChosen' : True, 'powerUsed' : False, 'rectangle' : [30, 90, 150, 50,10], 'picture' : 'Spiderman.jpg', 'power' : "Spiderman's power-up is called Webzip. When he uses his power-up, he can move players. The players will be placed 3 steps behind Spiderman. Webzip has a range of 4 spots in front of Spiderman."}
+Hulk = {'name' : 'Hulk', 'notChosen' : True, 'powerUsed' : False, 'rectangle' : [30, 160, 150, 50,10], 'picture' : 'Hulk.jpg', 'power' : "Hulk's power-up is called Smash. When he uses his power-up, he blows away all players within a range of 3 steps. Smash blows them 3 steps forward if the players are standing in front of him, and 3 steps backward if the players are standing behind him."}
+BlackPanther = {'name' : 'Black Panther', 'notChosen' : True, 'powerUsed' : False, 'rectangle' : [30, 230, 150, 50,10], 'picture' : 'BlackPanther.jpg', 'power' : "Black Panther's power-up is called Kinetic Energy. When he uses his power-up, he blows away all players within a range of 3 steps. Smash blows them 3 steps forward if the players are standing in front of him, and 3 steps backward if the players are standing behind him."}
+DrStrange = {'name' : 'Doctor Strange', 'notChosen' : True, 'powerUsed' : False, 'rectangle' : [30, 300, 150, 50,10], 'picture' : 'DoctorStrange.jpg', 'power' : "Doctor Strange's power is called Clone Illusion. When he uses his power-up, he creates a clone of himself. Every player who tries to attack Doctor Strange's clone goes back to his own checkpoint. The power-up stays activated for 3 rounds."}
+Thor = {'name' : 'Thor', 'notChosen' : True, 'powerUsed' : False, 'rectangle' : [210, 90, 150, 50,10], 'picture' : 'Thor.jpg', 'power' : "Thor's power-up is called Hammer: Mjolnir. By swinging his hammer, Thor can move 6 steps forward."}
+IronMan = {'name' : 'Iron Man', 'notChosen' : True, 'powerUsed' : False, 'rectangle' : [210, 160, 150, 50,10], 'picture' : 'IronMan.jpg', 'power' : "Iron Man's power-up is called Second Suit Roadblock. He can call a second suit to block one upcoming player. After that happens, the suit gets destroyed."}
+CptnAmerica = {'name' : 'Captain America', 'notChosen' : True, 'powerUsed' : False, 'rectangle' : [210, 230, 150, 50,10], 'picture' : 'CaptainAmerica.jpg', 'power' : "Captain America's power-up is called Shield. This is a passive power-up: it makes the player immune to every hero's power-up except Webzip and Clone Illusion."}
 Venom = {'name' : 'Venom', 'picture' : 'Venom.png', 'power' : 'You are stuck on the B platform and are not allowed to move for 2 rounds.'}
 Loki = {'name' : 'Loki', 'picture' : 'Loki.jpg', 'power' : 'For one turn the amount you throw will set you back rather than forward. For example, if you throw 4, you will have to go 4 steps back.'}
 Ultron = {'name' : 'Ultron', 'picture' : 'Ultron.jpg', 'power' : 'You will take 1 or 2 steps less on your next throw. This depends on the B platform you land on.'}
@@ -78,8 +78,6 @@ def characterKiezer():
     textSize(18)
     textFont(loadFont('BentonSans-17.vlw'))
     
-    # text('Next', 210, 300, 150, 50)
-    
     global choices, playerchoices
     # draw all options
     for i in range(len(choices[0:4])): 
@@ -93,6 +91,7 @@ def characterKiezer():
     for i in range(len(playerchoices)):
         text(playerchoices[i]['name'],410,20*i+100)  # write names at x=400, and y dependent on list index
     text('Next', 210, 300, 150, 50)
+    
 def Rect(a,b,c,d,*e): #rectangle maker a= X coordinate b= Y-coordinate c= width of the rectangle d= height of the rectangle e= color of the rectangle
     fill(*e)
     rect(a,b,c,d,10)
@@ -282,10 +281,11 @@ def draw():
                 
             elif len(playerchoices) < 4:
                 for charachter in choices:
-                    if mouseX >= charachter['rectangle'][0] and mouseX <= charachter['rectangle'][2] + charachter['rectangle'][0]  and mouseY >= charachter['rectangle'][1] and mouseY <= charachter['rectangle'][3] + charachter['rectangle'][1] :
+                    if charachter['notChosen'] and mouseX >= charachter['rectangle'][0] and mouseX <= charachter['rectangle'][2] + charachter['rectangle'][0]  and mouseY >= charachter['rectangle'][1] and mouseY <= charachter['rectangle'][3] + charachter['rectangle'][1] :
                         (playerchoices.append(charachter)) # add character to selectedlist
                         fill(100)  
                         rect(charachter['rectangle'][0], charachter['rectangle'][1], charachter['rectangle'][2], charachter['rectangle'][3],charachter['rectangle'][4])
+                        charachter['notChosen'] = False
 
                 for i in range(len(playerchoices)):
                     fill(135)
