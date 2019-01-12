@@ -29,6 +29,8 @@ def setup():
     noLoop()
     pointer = loadImage("pointer.png")
     wheel = loadImage("wheel.png")
+    startScreen()
+
       
 def startScreen():
     global screen1, screen2, screen3, screen4, screen5, screen6
@@ -39,7 +41,7 @@ def startScreen():
     screen5 = False
     
     background(255)
-    noStroke()
+
     
     # Avengers foto:
     Avengers = loadImage('Avengers.png')
@@ -289,7 +291,8 @@ def ThanosArm ():
     screen5 = False
     screen6 = True
 
-
+    background(255)
+    noStroke()
 
 
     while rotation_speed > 0:
