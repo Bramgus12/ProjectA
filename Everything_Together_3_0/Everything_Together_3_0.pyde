@@ -44,7 +44,7 @@ def startScreen():
 
     
     # Avengers foto:
-    Avengers = loadImage('Avengers.png')
+    Avengers = loadImage('Avengers.jpg')
     image(Avengers, 48, 75, 504, 200)
     
     # Uiterlijk van de tekst:
@@ -220,7 +220,7 @@ def powerupScreen():
     button(420, 160, 150, 50, Loki['name'])
     button(420, 230, 150, 50, Ultron['name'])
     button(420, 300, 150, 50, Thanos['name'])
-    image(loadImage('back.png'), 500, 20, 51, 51)
+    image(loadImage('back.jpeg'), 500, 20, 51, 51)
     
 def powerup(power, picture, name):
     global screen1, screen2, screen3, screen4, screen5, screen6
@@ -234,7 +234,7 @@ def powerup(power, picture, name):
     background(220)
     
     # Back button:
-    image(loadImage('back.png'), 500, 20, 51, 51)
+    image(loadImage('back.jpeg'), 500, 20, 51, 51)
    
     # Top text, character's/enemy's name:
     fill(0)
@@ -264,7 +264,7 @@ def stonePower(power, name):
     background(220)
     
     # Back button:
-    image(loadImage('back.png'), 500, 20, 51, 51)
+    image(loadImage('back.jpeg'), 500, 20, 51, 51)
    
     # Top text, character's/enemy's name:
     fill(0)
