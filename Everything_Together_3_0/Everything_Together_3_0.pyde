@@ -14,14 +14,21 @@ Ultron = {'name' : 'Ultron', 'picture' : 'Ultron.jpg', 'power' : 'You will take 
 Thanos = {'name': 'Thanos', 'picture' : 'Thanos.jpg', 'power' : "Thanos gets spinned when a player enters his area. After the first player enters Thanos' area, Thanos spins every 3 rounds. He will point at three spots. When you land on one of the 3 spots Thanos is pointing at, you must go back to your checkpoint. You cannot get out of Thanos' area. If someone tries to get you out of Thanos' area, the furthest place back where you can go is the checkpoint in Thanos' area."}
 Stones = {'name' : 'Infinity Stones', 'power' : 'I.  The Power Stone doubles your steps. It can only be used for one round.\nII.  The Mind Stone makes you indestructible for one round. If a player tries to attack you, nothing happens to the attacking player.\nIII.  The Reality Stone enables you to choose one player who will not be allowed to move for one turn.\nIV.  The Soul Stone enables you to choose one player who will be sent back to his/her last checkpoint.\nV.  The Space Stone allows you to take the place of the player in front of you. The player in front of you goes back to his/her last checkpoint.\nVI.  The Time Stone allows you to send all other players 5 steps back.'}
 
+deg = 0   
+speed = 0
+is_slowing = False
+rotation_speed = 0
+rotation = 0
+
 
 
 def setup():
-
-    size(840, 620, P3D)
+    global pointer, wheel
+    size(600, 400, P3D)
     startScreen()
     noLoop()
-
+    pointer = loadImage("pointer.png")
+    wheel = loadImage("wheel.png")
       
 def startScreen():
     global screen1, screen2, screen3, screen4, screen5, screen6
@@ -282,40 +289,31 @@ def ThanosArm ():
     screen5 = False
     screen6 = True
 
-    deg = 0
-    speed = 0
-    is_slowing = False
-    rotation_speed = 0
-    rotation = 0
+
+
+
+    while rotation_speed > 0:
+        if is_slowing:
+            rotation_speed -= 0.1
+        else:
+            rotation_speed += deg
+
+        if rotation_speed >= 25:
+            is_slowing = True
+
     
-    pointer = loadImage("pointer.png")
-    wheel = loadImage("wheel.png")
-
-
-    if is_slowing:
-        rotation_speed -= 0.1
-    else:
-        rotation_speed += deg
-
-    if rotation_speed >= 25:
-        is_slowing = True
-        
-    if rotation_speed < 0:
-        rotation_speed = 0
-        rot = (rotation - 90) % 360
- 
         
 
-    rotation += rotation_speed
-    # Push, pop keep transforms seperated from the rest of the draw function
-    pushMatrix()
-    # Draw the wheel and the pointer
-    image(pointer, width/2 - pointer.width/2, height/2 - pointer.height/2)
-    translate(width/2, height/2)
-    rotateZ(radians(rotation))
-    image(wheel, -wheel.width/2, -wheel.height/2)
-    popMatrix()
-    
+        rotation += rotation_speed
+        # Push, pop keep transforms seperated from the rest of the draw function
+        pushMatrix()
+        # Draw the wheel and the pointer
+        image(pointer, width/2 - pointer.width/2, height/2 - pointer.height/2)
+        translate(width/2, height/2)
+        rotateZ(radians(rotation))
+        image(wheel, -wheel.width/2, -wheel.height/2)
+        popMatrix()
+        
     # Draw the button
     pushMatrix()
     rect(342.5, 0, 150, 24)
@@ -331,6 +329,7 @@ def mouseClicked():
     redraw()  
     
 def draw():
+    global deg, is_slowing, rotation, rotation_speed
     if mouseButton == LEFT:
         if screen1:
             characterKiezer()
@@ -447,7 +446,7 @@ def draw():
                 powerupScreen()
         
         elif screen6:
-            if mouseButton == LEFT and mouseX > 342.5 and mouseX < 492.5 and mouseY > 0 and mouseY < 24:
+            if mouseX > 342.5 and mouseX < 492.5 and mouseY > 0 and mouseY < 24:
                 is_slowing = False
                 rotation = 0
                 rand = int(random(1, 4))
@@ -455,4 +454,9 @@ def draw():
                 rand_usage = rand * 90 + rand2
                 # Set the degree at which the W should point, and devide it through 1000
                 deg = (rand_usage / 420.0)#blaze it
+                rotation_speed = 0.1
+                ThanosArm()
+ 
+ 
+ 
  
