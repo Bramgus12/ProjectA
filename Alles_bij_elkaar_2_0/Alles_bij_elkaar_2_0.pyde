@@ -275,6 +275,9 @@ def draw():
             if 210 < mouseX < 360 and 300 < mouseY < 350:
                 if len(playerchoices) < 2:
                     characterKiezer()
+                    for character in choices:
+                        character['notChosen'] = True
+                        
                 else:
                     powerupDice()
                 
