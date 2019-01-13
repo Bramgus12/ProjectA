@@ -27,7 +27,7 @@ def setup():
     size(600, 400, P3D)
     startScreen()
     noLoop()
-    pointer = loadImage("pointer.png")
+    pointer = loadImage("pointer.jpg")
     wheel = loadImage("wheel.png")
     startScreen()
 
@@ -290,10 +290,18 @@ def ThanosArm ():
     screen4 = False
     screen5 = False
     screen6 = True
-
     background(255)
+    
+    image(loadImage('back.jpeg'), 500, 20, 51, 51)
+    rect(342.5, 0, 150, 24)
+    textAlign(CENTER, CENTER)
+    fill(255)
+    textSize(20)
+    text('SPIN!!!', 342.5, 0, 150, 24)
+    
+    
     noStroke()
-
+    image(pointer,125,25, 350, 350 )
 
     while rotation_speed > 0:
         if is_slowing:
@@ -311,20 +319,13 @@ def ThanosArm ():
         # Push, pop keep transforms seperated from the rest of the draw function
         pushMatrix()
         # Draw the wheel and the pointer
-        image(pointer, width/2 - pointer.width/2, height/2 - pointer.height/2)
         translate(width/2, height/2)
         rotateZ(radians(rotation))
         image(wheel, -wheel.width/2, -wheel.height/2)
         popMatrix()
         
-    # Draw the button
-    pushMatrix()
-    rect(342.5, 0, 150, 24)
-    textAlign(CENTER, CENTER)
-    fill(255)
-    textSize(20)
-    text('Test your luck!', 342.5, 0, 150, 24)
-    popMatrix()
+
+
 
     
 
@@ -456,10 +457,10 @@ def draw():
                 rand2 = int(random(1, 90))
                 rand_usage = rand * 90 + rand2
                 # Set the degree at which the W should point, and devide it through 1000
-                deg = (rand_usage / 420.0)#blaze it
+                deg = (rand_usage / 420.0)
                 rotation_speed = 0.1
                 ThanosArm()
- 
- 
+            if 500 < mouseX < 550 and 20 < mouseY < 70:
+                powerupDice()
  
  
